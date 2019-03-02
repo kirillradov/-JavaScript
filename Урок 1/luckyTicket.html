@@ -16,7 +16,12 @@ function luckyTicket(ticket) {
 		alert("Введен неверный номер билета.");
 	} else {
 
-		let partRight = ticket % 1000;
+		ticket = ticket + "";
+		let sumRight = (+ticket[3] + +ticket[4] + +ticket[5]);
+		let sumLeft = (+ticket[0] + +ticket[1] + +ticket[2]);
+		sumRight === sumLeft ? alert("Вам очень повезло! Вам достался счастливый билет.") : alert("Это обычный билет.");
+
+/*		let partRight = ticket % 1000;
 		let partLeft = parseInt(ticket / 1000);
 
 		let rightThundreds = parseInt(partRight / 100 );
@@ -33,12 +38,12 @@ function luckyTicket(ticket) {
 		if (sumRight === sumLeft) {
 			alert("Вам очень повезло! Вам достался счастливый билет.");
 		} else {
-			alert("Это обычный билет.");
+			alert("Это обычный билет."); */
 		}
-	}	
+		
 }
 
-let number = +prompt("Введите ваш номер билета вида XXXXXX: "); 
+let number = parseInt(prompt("Введите ваш номер билета вида XXXXXX: ")); 
 luckyTicket(number);
 
 </script>
