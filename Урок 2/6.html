@@ -51,6 +51,16 @@ function rubls(money) {
 		} else return "рубля"
 	}
 
+	if (numToString.length > 3) {
+		if (numToString[numToString.length - 1] === "1") {
+			return "рубль"
+		} else if (numToString[numToString.length - 1] === "0") {
+			return "рублей"
+		} else if (numToString[numToString.length - 1] > "4") {
+			return "рублей"
+		} else return "рубля"
+	}
+
 }
 
 
