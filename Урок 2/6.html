@@ -42,7 +42,13 @@ function rubls(money) {
 	}
 
 	if (numToString.length >= 3) {
-		if (numToString[numToString.length - 1] === "1") {
+
+		let last2Num = (numToString[numToString.length - 2] + numToString[numToString.length - 1]);
+		parseInt(last2Num);
+
+		if (last2Num > 10 && last2Num < 20) {
+			return "рублей"
+		} else if (numToString[numToString.length - 1] === "1") {
 			return "рубль"
 		} else if (numToString[numToString.length - 1] === "0" || numToString[numToString.length - 1] > "4") {
 			return "рублей"
