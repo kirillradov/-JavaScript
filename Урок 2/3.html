@@ -1,0 +1,26 @@
+<meta charset="utf-8">
+<script>
+
+'use strict';
+
+
+let a = +prompt("Введите первое число: ");
+let b = +prompt("Введите второе число: ");
+let c;
+
+if (a >= 0 && b >= 0) {
+
+		c = a-b;
+		console.log("Разность первого и второго числа: " + c );
+			
+	} else if (a < 0 && b < 0) {
+
+		c = a*b;
+		console.log("Произведение чисел равно: " + -c );
+
+	} else if (a >= 0 && b < 0 || a < 0 && b >= 0 ) {
+		c = a+b;
+		console.log("Сумма чисел равна: " + c);
+	} else console.log("Ошибка. Нужно ввести целые числа.");
+
+</script>

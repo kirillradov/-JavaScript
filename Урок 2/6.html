@@ -1,0 +1,58 @@
+<meta charset="utf-8">
+<script>
+
+'use strict';
+
+
+let money = +prompt("Сколько денег вы хотите положить на счет (не более 999): ").replace(",",".");
+
+alert("На ваш счет зачислено " + money + " " + rubls(money));
+
+
+/**
+* Функйия отдает правильное склонение слова "роублей", в зависимости от числа.
+* @param {number} money число рулей.
+* @return {string} слово "рублей" в правильном склонение.
+*/
+
+function rubls(money) {
+
+	let numToString = (money + "");
+
+	if (numToString.length === 1) {
+
+		if (money === 1) {
+			return "рубль"
+		} else if (money > 1 && money < 5) {
+			return "рубля"
+		} else return "рублей"
+	}
+
+	if (numToString.length === 2 && money <= 20 && money >= 10) {
+		return "рублей"
+	}
+
+	if (numToString.length === 2 && money > 20) {
+		
+		if (numToString[numToString.length - 1] === "1") {
+			return "рубль"
+		} else if (numToString[numToString.length - 1] > "4") {
+			return "рублей"
+		} else return "рубля"
+	}
+
+	if (numToString.length === 3) {
+		if (numToString[numToString.length - 1] === "1") {
+			return "рубль"
+		} else if (numToString[numToString.length - 1] === "0") {
+			return "рублей"
+		} else if (numToString[numToString.length - 1] > "4") {
+			return "рублей"
+		} else return "рубля"
+	}
+
+}
+
+
+
+</script>

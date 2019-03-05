@@ -1,0 +1,120 @@
+<meta charset="utf-8">
+<script>
+
+'use strict';
+
+/**
+* Складывает два числа.
+* @param {number} a Первое число.
+* @param {number} b Второе число.
+* @return {number} Результат сложения.
+*/
+	
+function getSumm(a,b) {
+
+	if (!Number.isNaN(a) && !Number.isNaN(b)) {
+
+		return a+b;
+		
+	} else console.log("Ошибка. Введено не число..");
+
+}
+
+/**
+* Вычисляет разность двух чисел.
+* @param {number} a Первое число.
+* @param {number} b Второе число.
+* @return {number} Разность чисел.
+*/
+
+function getDiff(a,b) {
+
+	if (!Number.isNaN(a) && !Number.isNaN(b)) {
+
+		return a-b;
+		
+	} else console.log("Ошибка. Введено не число.");
+
+}
+
+/**
+* Умножает два числа.
+* @param {number} a Первое число.
+* @param {number} b Второе число.
+* @return {number} Произведение чисел.
+*/
+
+function getMulti(a,b) {
+
+	if (!Number.isNaN(a) && !Number.isNaN(b)) {
+
+		return a*b;
+		
+	} else console.log("Ошибка. Введено не число.");
+
+}
+
+/**
+* Производит оперицию деления двух чисел.
+* @param {number} a Первое число.
+* @param {number} b Второе число.
+* @return {number} Частное чисел.
+*/
+
+function getSplit(a,b) {
+
+	if (!Number.isNaN(a) && !Number.isNaN(b)) {
+
+		return a/b;
+		
+	} else console.log("Ошибка. Введено не число.");
+
+
+}
+
+let arg1 = +prompt("Первое число: ").replace(",",".");
+let arg2 = +prompt("Второе число: ").replace(",",".");
+
+
+/**
+* Производит вызов математических функций, в зависимости от выбора пользователя .
+* @param {number} arg1 Первое число.
+* @param {number} arg2 Второе число.
+* @param {number} operation Второе число.
+* @return {number} Результат вычисления.
+*/
+
+function mathOperation(arg1, arg2, operation) {
+
+	if (!Number.isNaN(arg1) && !Number.isNaN(arg2)) {
+
+		switch (operation) {
+
+		case 1:
+		return console.log("Сумма чисел равна: " +getSumm(arg1,arg2));
+		
+		case 2:
+		return console.log("Разность чисел равна: " +getDiff(arg1,arg2));
+				
+		case 3:
+		return console.log("Произведение чисел равно: " +getMulti(arg1,arg2));
+		
+		case 4:
+		return console.log("Частное чисел равно: " +getSplit(arg1,arg2));
+		
+		default :
+		console.log("Ошибка. Незнаю такую операцию.");
+		
+		}
+
+	} else console.log("Ошибка. Введено не число.");
+	
+}
+
+if (!Number.isNaN(arg1) && !Number.isNaN(arg2)) {
+	let operation = +prompt("Какую операцию с числами будем делать?\n(1 - сложить, 2 - вычетание, 3 - умножение, 4 - деление");
+	mathOperation(arg1,arg2,operation);
+} else console.log("Ошибка. Введите числа.");
+
+
+</script>
