@@ -1,0 +1,64 @@
+<meta charset="utf-8">
+<script>
+'use strict';
+
+const arr = [
+  [2, 4, 6],
+  [1, 5, 10],
+  [7, 4, 1],
+];
+
+let summ = 0;
+let summMax = [];
+
+for (let i = 0; i < arr.length; i++) {
+	summ = 0;
+		for (let j = 0; j < arr[i].length; j++) {
+			summ += arr[i][j];
+		}
+
+summMax.push(summ);
+
+}
+
+/**
+* Функция возвращает максимальное число в массиве.
+* @arr {array} массив чисел.
+* @return {number} наибольшее число в массиве.
+*/
+function maxNumber(arr) {
+let max = arr[0];
+		for (let i = 0; i <= arr.length; i++) {
+			if (arr[i] >= max) {
+				max = arr[i];
+			}
+		}
+
+	return max;
+}
+
+/**
+* Функция возвращает минимальное число в массиве.
+* @arr {array} массив чисел.
+* @return {number} наименьшее число в массиве.
+*/
+function minNumber(arr) {
+let min = arr[0];
+	
+		for (let i = 0; i <= arr.length; i++) {
+				if (arr[i] < min) {
+				min = arr[i];
+			} 
+		} 
+
+	return min;
+}
+
+
+let maxIndex = summMax.lastIndexOf(maxNumber(summMax));
+let minNumberInMaxIndex = minNumber(arr[maxIndex]);
+
+console.log("Индекс массива с наибольшей суммой всех чисел: " + maxIndex);
+console.log("Наименьшее число в массиве с индексом (" + maxIndex + "): " + minNumberInMaxIndex);
+
+</script>

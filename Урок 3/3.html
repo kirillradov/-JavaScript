@@ -1,0 +1,13 @@
+<meta charset="utf-8">
+<script>
+'use strict';
+
+let arr = new Array(19).fill(" ");
+
+for (let i = 20, a = "x"; i !== 0; i--) {
+	console.log(arr.join("") + a + a);
+	arr.pop();
+	a += "x";
+}
+
+</script>
