@@ -1,0 +1,24 @@
+<meta charset="utf-8">
+<script>
+"use strict";
+
+/**
+* Раскладывает целое положительное число не превышающее 999 на сотни, десятки, единицы.
+* @param {number} num число.
+* @return {object} объект единицы, десятки, сотни.
+*/
+function numToObj(num) {
+	let obj = {};
+	if (num > 999 || num < 0 || !Number.isInteger(num)) {
+		console.log("Ошибка. Введены некорректные данные.");
+		return obj;
+	} else {
+		obj["thirdDigit"] = Math.floor(num / 100);
+		obj["secondDigit"] = Math.floor((num - obj["thirdDigit"] * 100) / 10);
+		obj["firstDigit"] = num % 10;
+	} return obj;
+}
+console.log(numToObj( +prompt("Введите любое целое, положительное число не превышающее 999")));
+
+
+</script>
