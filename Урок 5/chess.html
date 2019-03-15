@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="./style.css">
+  <title>ChessJS</title>
+</head>
+<body>
+<script>
+  "use strict";
+  
+/**
+* Вставляет блоки с нужным классом.
+* @param {string} param название класса блока.
+* @return {string} html код, который вставляет блок с нужным стилем на шахматной доске.
+*/
+    function block(param) {
+        const $block = document.createElement("div");
+        $block.classList.add(param);
+        return document.getElementsByClassName("line")[i].appendChild($block);
+    };
+/**
+* Вставляет шахматую фигуру на доску.
+* @param {number} number номер фигуры в массиве.
+* @param {string} color название свойства в объекте с массивом из списка фигур.
+* @return {string} текст или html код, который вставляется в блок на шахматной доске.
+*/
+    function figuresIn(number, color) {
+        return document.getElementsByTagName('div')[i].innerHTML = figures[color][number];
+    };
+/**
+* Вставляет одну выбранную по номеру в массиве шахматую фигуру на доску или пустое место.(тут не используется) 
+* @param {number} number номер фигуры в массиве.
+* @param {string} color название свойства в объекте с массивом из списка фигур.
+* @param {number} div номер блока в коллекции.
+* @return {string}  который вставляется в блок на шахматной доске.
+*/
+    function figureInOut(number, color, div) { //так же можно вставить пустое место (элемент массива номер 9)
+        return document.getElementsByTagName('div')[div].innerHTML = figures[color][number];
+    };
+/**
+* Вставляет шахматные фигуры на доску используя функцию figuresIn.
+* @param {number} start стартовый номер блока в коллекции.
+* @param {number} end конечный номер блока в коллекции.
+* @param {number} color цвет фигуры black или white.
+* @param {number} number номер фигуры в массивы.
+*/
+    function drawFigures(start, end, color, number) {
+        if (Number.isInteger(number)) { //если параметр number передан, то рисуются одинаковые фигуры под номером number в массиве 
+        for (i = start; i < end; i++) {
+        figuresIn(number, color);
+            }
+            //если параметр number не передан, то рисуются все фигуры из массива по порядку, 
+            //начиная с 0 по длина_массива минус две (там пешка и пустая строка)
+        } else { 
+            for (i = start, j = 0; i < end, j < figures[color].length-2; i++, j++) {
+            figuresIn(j, color); 
+            } 
+        }
+    };
+//&#9814; и &#9820 - ладья, &#9816; и &#9822 - конь, &#9815; и &#9821; - слон
+//&#9812; и &#9818; - король, &#9813; и &#9819; - ферзь, &#9817; и &#9823; - пешки
+const letters = ["","a", "b", "c", "d", "e", "f", "g", "h",""];
+const figures = {
+        white: ["&#9814;","&#9816;","&#9815;","&#9812;","&#9813;","&#9815;","&#9816;","&#9814;","&#9817;",""],
+        black: ["&#9820;","&#9822;","&#9821;","&#9818;","&#9819;","&#9821;","&#9822;","&#9820;","&#9823;",""],
+    };
+/* const map = { //номера строки и номера дивов из коллекции только шашечки (тут не используются)
+    1: [14,15,16,17,18,19,20,21],
+    2: [25,26,27,28,29,30,31,32],
+    3: [36,37,38,39,40,41,42,43],
+    4: [47,48,49,50,51,52,53,54],
+    5: [58,59,60,61,62,63,64,65],
+    6: [69,70,71,72,73,74,75,76],
+    7: [80,81,82,83,84,85,86,87],
+    8: [91,92,93,94,95,96,97,98],
+}; */
+   
+let i = 0;
+let j = 0;
+
+    //рисуется блок контейнер для всей шахматной доски
+    let $wrapper = document.createElement("div");
+    $wrapper.classList.add("wrapper");
+    document.getElementsByTagName("body")[0].appendChild($wrapper);
+    
+    for (i = 0; i < 10; i++) {
+        //рисуются строки для блоков. i - номер блока строки с классом line в коллекции
+        let $line = document.createElement("div");
+        $line.classList.add("line");
+        document.getElementsByClassName("wrapper")[0].appendChild($line);
+        //в строки вставляются блоки с нужными стилями и содержимым
+         if (i === 0) { //если блок 0, то вставляем в него блоки с буквами в обратном порядке
+    	   for (j = 0; j < 10; j++) { //j - номер блока в коллекции
+    		block("block").innerHTML = letters[9-j]; 
+    		}
+    	   } else if (i === 9) { //если блок 9, то вставляем в него блоки с буквами в обычном порядке
+            for (j = 0; j < 10; j++) {
+            block("block").innerHTML = letters[j]; 
+            }
+             } else { //рисуется шахматная доска и цифры
+    		for (j = 0; j < 10; j++) {    		
+    			if (j === 0) { //в нулевой блок (левый) вставляется цифра, в зависимости от позиции
+    				block("block-first").innerHTML = 9-i; 
+    			} else if (j < 9 ) { //рисуются сами шашечки
+    				if (i % 2 === 0) { //в четной строке
+    					if (j % 2 !== 0) {//каждый нечетный блок черный
+    					 block("block-black");
+    					} else {
+    					 block("block-white"); //каждый четный блок белый
+    					} 
+    				} else { //нечетная строка
+    					if (j % 2 === 0) { //каждый четный блок черный
+    					 block("block-black");
+    					} else { //каждый нечетный блок белый
+    						block("block-white");
+    					}
+    				}    				
+        		} else if (j === 9) { //в последний блок (правый) вставляется цифра, в зависимости от позиции
+    				block("block-last").innerHTML = 9-i; 
+    			}     		
+    		}
+    	}    	
+    }
+//вставляются сами фигуры на свои места
+drawFigures(25, 33, "black", 8); //пешки
+drawFigures(14, 22, "black"); //остальные фигуры
+drawFigures(91, 99, "white");
+drawFigures(80, 88, "white", 8);
+</script>   
+</body>
+</html>
